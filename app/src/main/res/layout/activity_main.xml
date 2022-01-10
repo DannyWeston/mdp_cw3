@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="com.dannyweston.mdp_cw3.viewmodels.MainActivityViewModel"/>
-        <variable name="viewmodel" type="com.dannyweston.mdp_cw3.viewmodels.MainActivityViewModel"/>
+        <variable name="viewmodel" type="MainActivityViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,6 +13,27 @@
         android:layout_margin="16dp"
 
         tools:context=".views.MainActivity">
+
+        <TextView
+            android:id="@+id/txt_recentLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewmodel.recentPos.toString()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/txt_addLocation"
+            android:onClickListener="@{() -> viewmodel.addPosition()}"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Add Position"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_recentLocation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

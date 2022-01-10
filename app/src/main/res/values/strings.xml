@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">mdp_cw3</string>
+    <string name="app_name">Running Tracker</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -9,4 +9,10 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="generic_notif_channel_name">Running Tracking</string>
+    <string name="generic_notif_channel_desc">Default description</string>
+    <string name="running_in_foreground_desc">Tap here for details</string>
+    <string name="running_in_foreground_title">Running in the background</string>
+    <string name="generic_notif_channel_id">Generic</string>
+    <string name="database_name">db_cw3</string>
 </resources>
