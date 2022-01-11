@@ -13,4 +13,35 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <!-- Spacing for root content -->
+    <style name="contentSpacing">
+        <item name="android:layout_margin">16dp</item>
+    </style>
+
+    <!-- TextView Headings -->
+    <style name="Heading1">
+        <item name="android:textSize">24sp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+    <style name="Heading2">
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+    <style name="Heading3">
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <!-- TextView Normal Text -->
+    <style name="TextViewText">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- TextView Normal Text -->
+    <style name="ButtonField">
+        <item name="android:background">@color/purple_200</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:padding">4dp</item>
+    </style>
 </resources>

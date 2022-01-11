@@ -24,18 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.dannyweston.mdp_cw3.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    private final ServiceConnection serviceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-
-        }
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +38,25 @@ public class MainActivity extends AppCompatActivity {
 
         binding.setLifecycleOwner(this);
         binding.setViewmodel(viewmodel);
+    }
 
-        startService(new Intent(this, RunnerService.class));
-        bindService(new Intent(this, RunnerService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+    // Open other activities
+    public void openRunningActivity(View v){
+        // Start the running activity
+
+        Intent intent = new Intent(this, RunningActivity.class);
+        startActivity(new Intent(intent));
+    }
+    public void openHistoryActivity(View v){
+        // Start the running activity
+
+        Intent intent = new Intent(this, HistoryActivity.class);
+        startActivity(new Intent(intent));
+    }
+    public void openSettingsActivity(View v){
+        // Start the running activity
+
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(new Intent(intent));
     }
 }

@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <import type="com.dannyweston.mdp_cw3.viewmodels.MainActivityViewModel"/>
-        <variable name="viewmodel" type="MainActivityViewModel"/>
+        <import type="com.dannyweston.mdp_cw3.viewmodels.RunningActivityViewModel"/>
+        <import type="com.dannyweston.mdp_cw3.util.TimeUtils"/>
+        <variable name="viewmodel" type="RunningActivityViewModel"/>
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,38 +47,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
 
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/section_titles">
 
-            <Button
-                android:id="@+id/btn_openRunningActivity"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="openRunningActivity"
-                android:text="Run"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/btn_openHistoryActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:onClick="openHistoryActivity"
-                android:text="History"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_openRunningActivity" />
-
-            <Button
-                android:id="@+id/btn_openSettingsActivity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:onClick="openSettingsActivity"
-                android:text="Settings"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_openHistoryActivity" />
+                android:text='@{TimeUtils.MillisToClockFormat(viewmodel.elapsed)}'
+                android:textSize="60sp" />
         </LinearLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

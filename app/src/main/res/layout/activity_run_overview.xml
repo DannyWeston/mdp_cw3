@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.dannyweston.mdp_cw3.viewmodels.RunOverviewActivityViewModel"/>
+        <variable name="viewmodel" type="com.dannyweston.mdp_cw3.viewmodels.RunOverviewActivityViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/contentSpacing"
+        tools:context=".views.RunOverviewActivity">
+
+        <!-- Title Section -->
+        <LinearLayout
+            android:id="@+id/section_titles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txt_activityTitle"
+                style="@style/Heading1"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:text="Bind to run" />
+        </LinearLayout>
+
+        <!-- Content Section -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/section_titles">
+
+            <TextView
+                style="@style/Heading2"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+
+                android:text="Some run metrics" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
