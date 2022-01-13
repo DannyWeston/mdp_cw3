@@ -1,9 +1,9 @@
 package com.dannyweston.mdp_cw3.viewmodels;
 
 import android.app.Application;
+import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer;
 import com.dannyweston.mdp_cw3.dao.Run;
 import com.dannyweston.mdp_cw3.dao.repositories.RunRepository;
 
-public class HistoryActivityViewModel extends AndroidViewModel {
+public class HistoryActivityViewModel extends SignallingViewModel {
     private final RunRepository _runRepo;
 
     public HistoryActivityViewModel(@NonNull Application application) {
@@ -20,6 +20,12 @@ public class HistoryActivityViewModel extends AndroidViewModel {
         _runRepo = new RunRepository(application);
 
         _runRepo.getLastRun().observeForever(recentObserver);
+    }
+
+    public void viewRun(View view) {
+        long runId = (long)view.getTag();
+
+        setEventInvoked(true, runId);
     }
 
     @Override

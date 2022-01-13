@@ -5,49 +5,99 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="com.dannyweston.mdp_cw3.viewmodels.RunOverviewActivityViewModel"/>
+        <import type="com.dannyweston.mdp_cw3.util.DistanceTimeUtils"/>
         <variable name="viewmodel" type="com.dannyweston.mdp_cw3.viewmodels.RunOverviewActivityViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ContentSpacing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/contentSpacing"
         tools:context=".views.RunOverviewActivity">
 
-        <!-- Title Section -->
-        <LinearLayout
-            android:id="@+id/section_titles"
-            android:layout_width="wrap_content"
+        <!-- Title -->
+        <TextView
+            android:id="@+id/txt_activityTitle"
+            style="@style/Heading1"
+            android:paddingBottom="20dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:text="@{DistanceTimeUtils.DateTimeFormat(viewmodel.run.startTime)}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                android:id="@+id/txt_activityTitle"
-                style="@style/Heading1"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:text="Bind to run" />
-        </LinearLayout>
-
-        <!-- Content Section -->
+        <!-- Content -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/section_titles">
+            app:layout_constraintStart_toStartOf="@id/txt_activityTitle"
+            app:layout_constraintTop_toBottomOf="@id/txt_activityTitle">
 
-            <TextView
-                style="@style/Heading2"
-                android:layout_width="wrap_content"
-
+            <!-- Distance covered -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp">
+                <TextView
+                    style="@style/Heading2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Distance:" />
+                <TextView
+                    style="@style/TextViewText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{DistanceTimeUtils.ToMetresString(viewmodel.run.getDistance())}"/>
+            </LinearLayout>
 
-                android:text="Some run metrics" />
+            <!-- Duration -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp">
+                <TextView
+                    style="@style/Heading2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Time taken:" />
+                <TextView
+                    style="@style/TextViewText"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text='@{DistanceTimeUtils.MillisToClockFormat(viewmodel.run.getDuration())}'/>
+            </LinearLayout>
+
+            <!-- Average speed -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/Heading2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Average speed:" />
+                <TextView
+                    style="@style/TextViewText"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+
+                    android:text='@{String.format("%.2f m/s", DistanceTimeUtils.GetSpeedMetresSecond(viewmodel.run.getDuration(), viewmodel.run.getDistance()))}'/>
+            </LinearLayout>
+
+            <!-- Delete Run -->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:onClick="@{() -> viewmodel.deleteRun()}"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

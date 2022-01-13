@@ -15,15 +15,7 @@ public class LocUpdateRepository extends BaseRepository {
         super(app);
     }
 
-    public LiveData<List<LocationUpdate>> getAll() {
-        return getDb().locationDao().getAll();
-    }
-
     public void addPos(@NonNull LocationUpdate pos) {
         getDb().getExecutors().execute(() -> getDb().locationDao().insertAll(pos));
-    }
-
-    public LiveData<LocationUpdate> getRecentPos() {
-        return getDb().locationDao().getMostRecent();
     }
 }

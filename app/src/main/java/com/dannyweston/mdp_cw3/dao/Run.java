@@ -1,25 +1,50 @@
 package com.dannyweston.mdp_cw3.dao;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity
+import java.util.Date;
+
+@Entity(indices = {@Index("uid")})
 public class Run {
     public Run(String name){
         this.name = name;
+
+        this.startTime = System.currentTimeMillis();
+
+        distance = 0;
     }
 
     @PrimaryKey(autoGenerate = true)
-    int uid;
+    @ColumnInfo(name = "uid")
+    long uid;
 
     String name;
 
-    public int getId(){
+    double distance;
+
+    long startTime, duration;
+
+    public long getId(){
         return uid;
     }
 
+    public long getStartTime(){
+        return startTime;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public double getDistance(){ return distance; }
+
+    public long getDuration(){ return duration; }
+
     @Override
     public String toString() {
-        return "Run " + uid + " : " + name;
+        return "(" + getId() + ") " + getName() + ": " + new Date(getStartTime());
     }
 }

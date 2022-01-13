@@ -4,14 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <import type="com.dannyweston.mdp_cw3.viewmodels.HistoryActivityViewModel"/>
-        <variable name="viewmodel" type="HistoryActivityViewModel"/>
+        <import type="com.dannyweston.mdp_cw3.viewmodels.AboutActivityViewModel"/>
+        <variable name="viewmodel" type="AboutActivityViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ContentSpacing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/ContentSpacing"
-        tools:context=".views.HistoryActivity">
+        tools:context=".views.AboutActivity">
 
         <!-- Title Section -->
         <LinearLayout
@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginBottom="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -28,37 +29,21 @@
                 android:layout_width="wrap_content"
 
                 android:layout_height="wrap_content"
-                android:text="Run History" />
-        </LinearLayout>
-
-        <!-- Content Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/section_titles">
+                android:text="About the app" />
 
             <TextView
-                style="@style/Heading2"
+                style="@style/TextViewText"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:text="This app was produced by DannyWeston (psydw2) for his MDP coursework 3."
+                android:layout_marginBottom="10dp"/>
 
-                android:text="Most Recent Run:" />
-
-            <Button
-                android:tag="@{viewmodel.lastRun.id}"
-                style="@style/ButtonField"
-
-                android:visibility="@{viewmodel.lastRun == null ? 4 : 0}"
-                android:layout_width="match_parent"
+            <TextView
+                style="@style/TextViewText"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewmodel.lastRun.toString()}"
-                android:onClick="@{(view) -> viewmodel.viewRun(view)}"
-                />
+                android:layout_marginBottom="10dp"
+                android:text="It involves functionality for tracking the distance and duration a run is completed by a user."/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

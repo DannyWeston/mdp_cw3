@@ -5,20 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="com.dannyweston.mdp_cw3.viewmodels.RunningActivityViewModel"/>
-        <import type="com.dannyweston.mdp_cw3.util.TimeUtils"/>
+        <import type="com.dannyweston.mdp_cw3.util.DistanceTimeUtils"/>
         <variable name="viewmodel" type="RunningActivityViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/contentSpacing"
+        style="@style/ContentSpacing"
         tools:context=".views.MainActivity">
 
         <!-- Title Section -->
         <LinearLayout
             android:id="@+id/section_titles"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
 
@@ -27,25 +27,21 @@
             <TextView
                 android:id="@+id/txt_activityTitle"
                 style="@style/Heading1"
-                android:text="Running Tracker"
+                android:text="Run"
+                android:layout_gravity="center"
+                android:gravity="center_vertical"
+                app:drawableStartCompat="@drawable/run_icon"
+                android:drawablePadding="15dp"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/txt_activitySubtitle"
-                style="@style/Heading2"
-                android:text="By DannyWeston"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <!-- Content Section -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,10 +49,43 @@
             app:layout_constraintTop_toBottomOf="@+id/section_titles">
 
             <TextView
+                android:id="@+id/txt_finishedRun"
+                style="@style/Heading1"
+                android:visibility='@{viewmodel.finished ? 0 : 4}'
+                android:textAlignment="center"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text='Run finished!'
+                android:layout_marginBottom="24dp"/>
+
+            <TextView
+                style="@style/Heading1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text='@{DistanceTimeUtils.MillisToClockFormat(viewmodel.elapsed)}'
+                android:layout_marginBottom="24dp"
+                android:textSize="50sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                style="@style/Heading1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{DistanceTimeUtils.ToMetresString(viewmodel.distance)}"
+                android:layout_marginBottom="24dp"
+                android:textSize="32sp"
+                android:textAlignment="center"/>
+
+            <Button
+                android:visibility='@{viewmodel.finished ? 4 : 0}'
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text='@{TimeUtils.MillisToClockFormat(viewmodel.elapsed)}'
-                android:textSize="60sp" />
+                android:text="Stop"
+                android:layout_gravity="center"
+                android:onClick="@{() -> viewmodel.stopRun()}"/>
+
         </LinearLayout>
 
 

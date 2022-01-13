@@ -1,8 +1,10 @@
-package com.dannyweston.mdp_cw3.services.location;
+package com.dannyweston.mdp_cw3.services;
 
 import android.os.Binder;
 import android.os.IBinder;
 import android.os.IInterface;
+
+import com.dannyweston.mdp_cw3.services.RunnerService;
 
 public class RunnerServiceBinder extends Binder implements IInterface {
     private final RunnerService _rs;

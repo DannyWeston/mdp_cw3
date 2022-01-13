@@ -5,7 +5,9 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-import com.dannyweston.mdp_cw3.util.DistanceUtils;
+import com.dannyweston.mdp_cw3.util.DistanceTimeUtils;
+
+import java.util.Locale;
 
 @Entity(
         foreignKeys = @ForeignKey(
@@ -15,53 +17,42 @@ import com.dannyweston.mdp_cw3.util.DistanceUtils;
         )
 )
 public class LocationUpdate {
-    public LocationUpdate(long runId, double latitude, double longitude, double travelled){
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.travelled = travelled;
-
+    public LocationUpdate(long runId, double distance){
         this.runId = runId;
 
         this.timestamp = System.currentTimeMillis();
+
+        this.distance = distance;
     }
 
     @PrimaryKey(autoGenerate = true)
-    int uid;
+    long uid;
 
-    double latitude, longitude, travelled;
+    long runId, timestamp;
 
-    long timestamp;
-
-    long runId;
+    double distance;
 
     public long getTimestamp(){
         return timestamp;
     }
 
-    public double getLongitude(){
-        return longitude;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public double getTravelled(){
-        return travelled;
-    }
-
-    public int getId(){
+    public long getId(){
         return uid;
+    }
+
+    public double getDistance() {
+        return distance;
     }
 
     @NonNull
     @Override
     public String toString() {
         return "[" +
-        DistanceUtils.milliToSeconds(timestamp) +
+        DistanceTimeUtils.asShortDateFormat(getTimestamp()) +
         " : " +
-        String.format("%.2f]", travelled);
+        String.format(Locale.ENGLISH, "%.2f]", getDistance());
     }
+
 }
 
 

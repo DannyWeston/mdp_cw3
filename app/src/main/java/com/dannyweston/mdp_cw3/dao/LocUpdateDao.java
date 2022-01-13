@@ -11,12 +11,6 @@ import java.util.List;
 
 @Dao
 public interface LocUpdateDao {
-    @Query("SELECT * FROM LocationUpdate")
-    LiveData<List<LocationUpdate>> getAll();
-
-    @Query("SELECT * FROM LocationUpdate WHERE timestamp = (SELECT MAX(timestamp) FROM LocationUpdate)")
-    LiveData<LocationUpdate> getMostRecent();
-
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     List<Long> insertAll(LocationUpdate... positions);
 }

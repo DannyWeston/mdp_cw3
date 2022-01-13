@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 
 @Database(
         entities = { LocationUpdate.class, Run.class },
-        version = 2,
+        version = 6,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {

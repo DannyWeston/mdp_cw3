@@ -1,17 +1,10 @@
 package com.dannyweston.mdp_cw3.views;
 
 import android.Manifest;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.view.View;
-import android.widget.TextView;
 
 import com.dannyweston.mdp_cw3.R;
-import com.dannyweston.mdp_cw3.services.location.RunnerService;
 import com.dannyweston.mdp_cw3.viewmodels.MainActivityViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,9 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.dannyweston.mdp_cw3.databinding.ActivityMainBinding;
+import com.dannyweston.mdp_cw3.viewmodels.ViewModelFactory;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -34,29 +27,31 @@ public class MainActivity extends AppCompatActivity {
 
         /* Setup viewmodel */
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        MainActivityViewModel viewmodel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        MainActivityViewModel viewmodel = new ViewModelProvider(this, new ViewModelFactory(getApplication()))
+                .get(MainActivityViewModel.class);
+
+        viewmodel.getEventInvoked().observe(this, (obs) -> {
+            Intent intent;
+            switch ((int)obs.second.longValue()){
+                case 0:
+                    intent = new Intent(this, RunningActivity.class);
+                    break;
+                case 1:
+                    intent = new Intent(this, HistoryActivity.class);
+                    break;
+                case 2:
+                    intent = new Intent(this, SettingsActivity.class);
+                    break;
+                case 3:
+                    intent = new Intent(this, AboutActivity.class);
+                    break;
+                default: return;
+            }
+
+            startActivity(new Intent(intent));
+        });
 
         binding.setLifecycleOwner(this);
         binding.setViewmodel(viewmodel);
-    }
-
-    // Open other activities
-    public void openRunningActivity(View v){
-        // Start the running activity
-
-        Intent intent = new Intent(this, RunningActivity.class);
-        startActivity(new Intent(intent));
-    }
-    public void openHistoryActivity(View v){
-        // Start the running activity
-
-        Intent intent = new Intent(this, HistoryActivity.class);
-        startActivity(new Intent(intent));
-    }
-    public void openSettingsActivity(View v){
-        // Start the running activity
-
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(new Intent(intent));
     }
 }
