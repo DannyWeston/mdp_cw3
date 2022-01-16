@@ -12,18 +12,28 @@ import com.dannyweston.mdp_cw3.R;
 import com.dannyweston.mdp_cw3.views.RunningActivity;
 
 class RunnerServiceNotifManager {
-    public static final String EXTRA_STOP_RUN = "StopRun";
     private final NotificationManager notifManager;
 
     public RunnerServiceNotifManager(NotificationManager manager){
         this.notifManager = manager;
     }
 
-    public Notification displayForegroundNotif(RunnerService rs, String channelId, String title, String content){
+    public Notification displayForegroundNotif(RunnerService rs){
+
+        String channelId = rs.getString(R.string.generic_notif_channel_id); // Channel Id
+        String channelName = rs.getString(R.string.generic_notif_channel_name); // Channel Name
+        String channelDesc = rs.getString(R.string.generic_notif_channel_desc); // Channel name
+
+        // Add notification channel
+        addChannel(channelId, channelName, channelDesc, NotificationManager.IMPORTANCE_DEFAULT);
+
+        // Create a new notification
+        // Has a title, description, and single button to end the current active run
+        // Clicking on the notification banner itself will open the active run activity (RunningActivity)
         NotificationCompat.Builder builder = new NotificationCompat.Builder(rs, channelId)
                 .setSmallIcon(R.drawable.run_icon_img)
-                .setContentTitle(title)
-                .setContentText(content)
+                .setContentTitle(rs.getString(R.string.txtNotifTitle))
+                .setContentText(rs.getString(R.string.txtNotifDescription))
                 .setContentIntent(openRunActivityIntent(rs))
                 .addAction(R.drawable.ic_launcher_foreground, rs.getString(R.string.txtNotifEndRun), stopRunActivityIntent(rs))
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
@@ -31,7 +41,9 @@ class RunnerServiceNotifManager {
                 .setSilent(true);
 
         Notification notif = builder.build();
-        notifManager.notify(RunnerService.RUNNER_SERVICE_ID, notif);
+        notifManager.notify(rs.getResources().getInteger(R.integer.serviceRunnerId), notif);
+
+        rs.getString(R.string.extraStopRun);
 
         return notif;
     }
@@ -45,12 +57,12 @@ class RunnerServiceNotifManager {
 
     private PendingIntent stopRunActivityIntent(RunnerService rs){
         Intent intent = new Intent(rs, RunnerService.class)
-                .putExtra(EXTRA_STOP_RUN, true);
+                .putExtra(rs.getString(R.string.extraStopRun), true);
 
         return PendingIntent.getService(rs, 0, intent,  PendingIntent.FLAG_IMMUTABLE);
     }
 
-    public void addChannel(String id, String name, String desc, int importance){
+    private void addChannel(String id, String name, String desc, int importance){
         NotificationChannel channel = new NotificationChannel(id, name, importance);
         channel.setDescription(desc);
         notifManager.createNotificationChannel(channel);

@@ -11,22 +11,19 @@ public class MainActivityViewModel extends SignallingViewModel {
         super(application);
     }
 
-
-
-
-    public void runActivity(){
+    public void btnOpenRunActivityClick(){
         setAction(new Action(R.integer.actionOpenRunActivity));
     }
 
-    public void historyActivity(){
+    public void btnOpenHistoryActivityClick(){
         setAction(new Action(R.integer.actionOpenHistoryActivity));
     }
 
-    public void settingsActivity(){
+    public void btnOpenSettingsActivityClick(){
         setAction(new Action(R.integer.actionOpenSettingsActivity));
     }
 
-    public void aboutActivity() {
+    public void btnOpenAboutActivityClick() {
         setAction(new Action(R.integer.actionOpenAboutActivity));
     }
 }

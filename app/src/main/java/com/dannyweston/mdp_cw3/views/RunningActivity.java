@@ -25,6 +25,8 @@ public class RunningActivity extends AppCompatActivity implements ActionListener
     // Can only be used after bind (service connection below)
     private RunnerService _runnerService;
 
+    private RunningActivityViewModel _vm;
+
     // For handling the connection with the location service
     private final ServiceConnection _serviceConnection = new ServiceConnection() {
         @Override
@@ -45,7 +47,6 @@ public class RunningActivity extends AppCompatActivity implements ActionListener
         }
     };
 
-    private RunningActivityViewModel _vm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

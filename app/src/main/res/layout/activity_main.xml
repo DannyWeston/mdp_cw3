@@ -38,28 +38,28 @@
                 android:id="@+id/btn_OpenRunActivity"
                 style="@style/HomeButtonPortrait"
                 android:drawableStart="@drawable/run_icon"
-                android:onClick="@{() -> viewmodel.runActivity()}"
+                android:onClick="@{() -> viewmodel.btnOpenRunActivityClick()}"
                 android:text="@string/txtMainRunButton" />
 
             <Button
                 android:id="@+id/btn_OpenHistoryActivity"
                 style="@style/HomeButtonPortrait"
                 android:drawableStart="@drawable/history_icon"
-                android:onClick="@{() -> viewmodel.historyActivity()}"
+                android:onClick="@{() -> viewmodel.btnOpenHistoryActivityClick()}"
                 android:text="@string/txtMainHistoryButton"/>
 
             <Button
                 android:id="@+id/btn_OpenSettingsActivity"
                 style="@style/HomeButtonPortrait"
                 android:drawableStart="@drawable/settings_icon"
-                android:onClick="@{() -> viewmodel.settingsActivity()}"
+                android:onClick="@{() -> viewmodel.btnOpenSettingsActivityClick()}"
                 android:text="@string/txtMainSettingsButton"/>
 
             <Button
                 android:id="@+id/btn_OpenAboutActivity"
                 style="@style/HomeButtonPortrait"
                 android:drawableStart="@drawable/about_icon"
-                android:onClick="@{() -> viewmodel.aboutActivity()}"
+                android:onClick="@{() -> viewmodel.btnOpenAboutActivityClick()}"
                 android:text="@string/txtMainAboutButton" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

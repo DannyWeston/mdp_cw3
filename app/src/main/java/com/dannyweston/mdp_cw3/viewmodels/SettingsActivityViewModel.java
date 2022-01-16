@@ -23,7 +23,7 @@ public class SettingsActivityViewModel extends SignallingViewModel {
     public LiveData<Integer> getUnits(){ return _units; }
     public void setUnits(int units){ this._units.setValue(units); }
 
-    public void saveSettings(){
+    public void btnSaveSettingsClick(){
         setSaved(true);
 
         setAction(new Action(R.integer.actionSaveSettings));

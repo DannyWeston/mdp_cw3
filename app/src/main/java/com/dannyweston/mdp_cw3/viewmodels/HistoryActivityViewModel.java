@@ -16,6 +16,7 @@ import java.util.List;
 
 public class HistoryActivityViewModel extends SignallingViewModel {
     private final RunRepository _runRepo;
+    private long _selected;
 
     public HistoryActivityViewModel(@NonNull Application application) {
         super(application);
@@ -27,10 +28,9 @@ public class HistoryActivityViewModel extends SignallingViewModel {
         _runRepo.getRunCount().observeForever(countObserver);
     }
 
-    private long _selected;
     public long getSelected(){ return _selected; }
 
-    public void viewRun(View view) {
+    public void btnViewRunClick(View view) {
         _selected = (long)view.getTag();
 
         setAction(new Action(R.integer.actionOpenRunOverviewActivity));
@@ -51,7 +51,6 @@ public class HistoryActivityViewModel extends SignallingViewModel {
     }
 
     // Run count
-
     private final MutableLiveData<Long> count = new MutableLiveData<>();
     public LiveData<Long> getCount(){
         return count;

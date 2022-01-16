@@ -65,7 +65,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{viewmodel.lastRun.toString()}"
-                        android:onClick="@{(view) -> viewmodel.viewRun(view)}"
+                        android:onClick="@{(view) -> viewmodel.btnViewRunClick(view)}"
                         />
                 </LinearLayout>
 
@@ -92,7 +92,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@{viewmodel.longestRun.toString()}"
-                        android:onClick="@{(view) -> viewmodel.viewRun(view)}"
+                        android:onClick="@{(view) -> viewmodel.btnViewRunClick(view)}"
                         />
                 </LinearLayout>
 

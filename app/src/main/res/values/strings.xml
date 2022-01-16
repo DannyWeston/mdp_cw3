@@ -43,4 +43,5 @@
     <string name="txtMetreUnits">m</string>
     <string name="txtKilometreUnits">km</string>
     <string name="txtMileUnits">miles</string>
+    <string name="extraStopRun">extraStopRun</string>
 </resources>

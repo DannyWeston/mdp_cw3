@@ -31,7 +31,7 @@ public class HistoryActivity extends AppCompatActivity implements ActionListener
         RecyclerView runView = findViewById(R.id.list_AllRuns);
         runView.setLayoutManager(new LinearLayoutManager(this));
         RunRecyclerViewAdapter adapter = new RunRecyclerViewAdapter(this);
-        adapter.setClickListener((a, b) -> _vm.viewRun(a));
+        adapter.setClickListener((a, b) -> _vm.btnViewRunClick(a));
         runView.setAdapter(adapter);
 
         _vm.getRuns().observe(this, (runs) -> {

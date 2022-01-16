@@ -16,10 +16,8 @@ import com.dannyweston.mdp_cw3.util.DistanceTimeUtils;
 import java.util.Locale;
 
 public class RunOverviewActivityViewModel extends SignallingViewModel {
-
     private final RunRepository _runRepo;
     private final long _runId;
-    private final SharedPreferences _pref;
 
     private final int _units;
 
@@ -37,7 +35,7 @@ public class RunOverviewActivityViewModel extends SignallingViewModel {
         _runRepo.getRun(_runId).observeForever(run::setValue);
 
         // Fetch preferences manager
-        _pref = application.getSharedPreferences(application.getString(R.string.app_name), Context.MODE_PRIVATE);
+        SharedPreferences _pref = application.getSharedPreferences(application.getString(R.string.app_name), Context.MODE_PRIVATE);
 
         // Fetch units from preferences
         _units = _pref.getInt(application.getString(R.string.prefUnits), R.integer.Metres);

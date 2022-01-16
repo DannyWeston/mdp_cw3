@@ -24,8 +24,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class RunnerService extends Service implements LocationListener {
-    protected static final int RUNNER_SERVICE_ID = 1;
-
     // Notification manager
     private RunnerServiceNotifManager _notifManager;
 
@@ -39,8 +37,9 @@ public class RunnerService extends Service implements LocationListener {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null && intent.getBooleanExtra(RunnerServiceNotifManager.EXTRA_STOP_RUN, false)) {
+        if (intent != null && intent.getBooleanExtra(getString(R.string.extraStopRun), false)) {
             this.endRun();
+            Log.d("mdpcw3", "Run finished");
         }
 
         return Service.START_NOT_STICKY;
@@ -53,20 +52,14 @@ public class RunnerService extends Service implements LocationListener {
         activeRunId = -1;
 
         _runRepo = new RunRepository(getApplication());
-        _locRepo = new LocUpdateRepository(this.getApplication());
+        _locRepo = new LocUpdateRepository(getApplication());
 
         // Start the service in the foreground and pass in the required notification
         // Show background service notification
         if (_notifManager == null) {
             _notifManager = new RunnerServiceNotifManager(getSystemService(NotificationManager.class));
+            Log.d("mdpcw3", "Notification manager setup for RunnerService");
 
-            // Add notification channels
-            _notifManager.addChannel(
-                    getString(R.string.generic_notif_channel_id),
-                    getString(R.string.generic_notif_channel_name),
-                    getString(R.string.generic_notif_channel_desc),
-                    NotificationManager.IMPORTANCE_DEFAULT
-            );
         }
     }
 
@@ -113,12 +106,9 @@ public class RunnerService extends Service implements LocationListener {
             return -1;
         }
 
-        Notification n = _notifManager.displayForegroundNotif(
-                this,
-                getString(R.string.generic_notif_channel_id),
-                getString(R.string.txtNotifTitle),
-                getString(R.string.txtNotifDescription)
-        );
+        // Create a notification because we want to start this service foregrounded
+        // The user must be able to use another application whilst using the app
+        Notification n = _notifManager.displayForegroundNotif(this);
 
         // Setup timer for keeping track of total run time
         _timer = new Timer();
@@ -128,10 +118,11 @@ public class RunnerService extends Service implements LocationListener {
             @Override
             public void run() {
                 _runRepo.setRunDuration(getActiveRunId(), System.currentTimeMillis() - startTime); }
-        }, 0, 250);
+        }, 0, getResources().getInteger(R.integer.timerRunUpdateInterval));
 
-        startForeground(RUNNER_SERVICE_ID, n);
+        startForeground(getResources().getInteger(R.integer.serviceRunnerId), n);
 
+        // Return the ID of the created run (active run)
         return getActiveRunId();
     }
 
@@ -143,21 +134,20 @@ public class RunnerService extends Service implements LocationListener {
         return activeRunId;
     }
 
-
     // Keep track of elapsed time
-    private final MutableLiveData<Boolean> finished = new MutableLiveData<>();
-    public LiveData<Boolean> getFinished(){ return finished; }
-    public void setFinished(boolean finished){ this.finished.setValue(finished); }
+    private final MutableLiveData<Boolean> _finished = new MutableLiveData<>();
+    public LiveData<Boolean> getFinished(){ return _finished; }
+    public void setFinished(boolean _finished){ this._finished.setValue(_finished); }
 
     // Keep track of distance
-    private final MutableLiveData<Double> totalDistance = new MutableLiveData<>();
-    public LiveData<Double> getTotalDistance(){ return totalDistance;}
-    public void setTotalDistance(double distance){ totalDistance.setValue(distance); }
+    private final MutableLiveData<Double> _distance = new MutableLiveData<>();
+    public LiveData<Double> getTotalDistance(){ return _distance;}
+    public void setTotalDistance(double distance){ _distance.setValue(distance); }
 
     // Keep track of elapsed time
-    private final MutableLiveData<Long> elapsed = new MutableLiveData<>();
-    public LiveData<Long> getElapsed(){ return elapsed; }
-    public void setElapsed(long elapsed){ this.elapsed.setValue(elapsed); }
+    private final MutableLiveData<Long> _elapsed = new MutableLiveData<>();
+    public LiveData<Long> getElapsed(){ return _elapsed; }
+    public void setElapsed(long _elapsed){ this._elapsed.setValue(_elapsed); }
 
     @Override
     public void onLocationChanged(Location location) {

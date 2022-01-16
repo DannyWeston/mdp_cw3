@@ -44,7 +44,7 @@
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/run_icon"
                 android:drawablePadding="25dp"
-                android:onClick="@{() -> viewmodel.runActivity()}"
+                android:onClick="@{() -> viewmodel.btnOpenRunActivityClick()}"
                 android:padding="25dp"
 
                 android:text="@string/txtMainRunButton"
@@ -61,7 +61,7 @@
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/history_icon"
                 android:drawablePadding="25dp"
-                android:onClick="@{() -> viewmodel.historyActivity()}"
+                android:onClick="@{() -> viewmodel.btnOpenHistoryActivityClick()}"
                 android:padding="25dp"
 
                 android:text="@string/txtMainHistoryButton"
@@ -78,7 +78,7 @@
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/settings_icon"
                 android:drawablePadding="25dp"
-                android:onClick="@{() -> viewmodel.settingsActivity()}"
+                android:onClick="@{() -> viewmodel.btnOpenSettingsActivityClick()}"
                 android:padding="25dp"
 
                 android:text="@string/txtMainSettingsButton"
@@ -94,7 +94,7 @@
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/about_icon"
                 android:drawablePadding="25dp"
-                android:onClick="@{() -> viewmodel.aboutActivity()}"
+                android:onClick="@{() -> viewmodel.btnOpenAboutActivityClick()}"
                 android:padding="25dp"
 
                 android:text="@string/txtMainAboutButton"
