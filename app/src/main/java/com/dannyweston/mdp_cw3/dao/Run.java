@@ -5,6 +5,8 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import com.dannyweston.mdp_cw3.util.DistanceTimeUtils;
+
 import java.util.Date;
 
 @Entity(indices = {@Index("uid")})
@@ -45,6 +47,6 @@ public class Run {
 
     @Override
     public String toString() {
-        return "(" + getId() + ") " + getName() + ": " + new Date(getStartTime());
+        return DistanceTimeUtils.DateTimeFormat(getStartTime());
     }
 }

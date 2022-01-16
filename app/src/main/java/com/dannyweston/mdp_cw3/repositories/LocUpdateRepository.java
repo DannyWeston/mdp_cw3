@@ -1,13 +1,10 @@
-package com.dannyweston.mdp_cw3.dao.repositories;
+package com.dannyweston.mdp_cw3.repositories;
 
 import android.app.Application;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 
 import com.dannyweston.mdp_cw3.dao.LocationUpdate;
-
-import java.util.List;
 
 public class LocUpdateRepository extends BaseRepository {
 

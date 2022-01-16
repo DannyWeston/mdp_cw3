@@ -42,10 +42,65 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <!-- TextView Normal Text -->
+    <!-- Button Field -->
     <style name="ButtonField">
-        <item name="android:background">@color/purple_200</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:gravity">left|center_vertical</item>
         <item name="android:padding">4dp</item>
+    </style>
+
+    <!-- Caution Button -->
+    <style name="CautionButton">
+        <item name="android:background">@android:color/holo_red_light</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Overview Run Button -->
+    <style name="OverviewRunButton">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">viewStart</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Green Button -->
+    <style name="GreenButton">
+        <item name="android:background">@android:color/holo_green_light</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <!-- Home Button Portrait -->
+    <style name="HomeButtonPortrait">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:drawablePadding">25dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:paddingHorizontal">25dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- Home Button Landscape -->
+    <style name="HomeButtonLandscape">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- Button Style 1 -->
+    <style name="Button1">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>

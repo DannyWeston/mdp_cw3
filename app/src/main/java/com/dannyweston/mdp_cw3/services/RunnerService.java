@@ -17,8 +17,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.dannyweston.mdp_cw3.R;
 import com.dannyweston.mdp_cw3.dao.LocationUpdate;
 import com.dannyweston.mdp_cw3.dao.Run;
-import com.dannyweston.mdp_cw3.dao.repositories.LocUpdateRepository;
-import com.dannyweston.mdp_cw3.dao.repositories.RunRepository;
+import com.dannyweston.mdp_cw3.repositories.LocUpdateRepository;
+import com.dannyweston.mdp_cw3.repositories.RunRepository;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -35,12 +35,22 @@ public class RunnerService extends Service implements LocationListener {
     // Timer for keeping track of run time
     private Timer _timer;
 
-    private long activeRunId = -1;
-    private Location lastLocation;
+    private Location _lastLocation;
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null && intent.getBooleanExtra(RunnerServiceNotifManager.EXTRA_STOP_RUN, false)) {
+            this.endRun();
+        }
+
+        return Service.START_NOT_STICKY;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        activeRunId = -1;
 
         _runRepo = new RunRepository(getApplication());
         _locRepo = new LocUpdateRepository(this.getApplication());
@@ -65,19 +75,20 @@ public class RunnerService extends Service implements LocationListener {
 
         setActiveRunId(-1);
 
+        setFinished(true);
+
         getSystemService(LocationManager.class).removeUpdates(this);
 
         stopForeground(true);
     }
 
     public long startNewRun() {
-        // Setup timer for keeping track of total run time
-        _timer = new Timer();
-
-        if (activeRunId >= 0){
+        if (getActiveRunId() >= 0){
             Log.d("mdpcw3", "A run is already in progress");
             return -1;
         }
+
+        setFinished(false);
 
         // Create new run and set according id
         Run newRun = new Run("TestRun");
@@ -105,9 +116,12 @@ public class RunnerService extends Service implements LocationListener {
         Notification n = _notifManager.displayForegroundNotif(
                 this,
                 getString(R.string.generic_notif_channel_id),
-                getString(R.string.running_in_foreground_title),
-                getString(R.string.running_in_foreground_desc)
+                getString(R.string.txtNotifTitle),
+                getString(R.string.txtNotifDescription)
         );
+
+        // Setup timer for keeping track of total run time
+        _timer = new Timer();
 
         // Create timer to update run timer
         _timer.schedule(new TimerTask() {
@@ -121,13 +135,19 @@ public class RunnerService extends Service implements LocationListener {
         return getActiveRunId();
     }
 
+    private long activeRunId;
     private void setActiveRunId(long id) {
         this.activeRunId = id;
     }
-
     public long getActiveRunId(){
         return activeRunId;
     }
+
+
+    // Keep track of elapsed time
+    private final MutableLiveData<Boolean> finished = new MutableLiveData<>();
+    public LiveData<Boolean> getFinished(){ return finished; }
+    public void setFinished(boolean finished){ this.finished.setValue(finished); }
 
     // Keep track of distance
     private final MutableLiveData<Double> totalDistance = new MutableLiveData<>();
@@ -136,7 +156,7 @@ public class RunnerService extends Service implements LocationListener {
 
     // Keep track of elapsed time
     private final MutableLiveData<Long> elapsed = new MutableLiveData<>();
-    public LiveData<Long> getElapsed(){ return elapsed;}
+    public LiveData<Long> getElapsed(){ return elapsed; }
     public void setElapsed(long elapsed){ this.elapsed.setValue(elapsed); }
 
     @Override
@@ -145,8 +165,8 @@ public class RunnerService extends Service implements LocationListener {
         if (getActiveRunId() < 0) return;
 
         // Add new record if possible
-        if (lastLocation != null){
-            double dist = location.distanceTo(lastLocation);
+        if (_lastLocation != null){
+            double dist = location.distanceTo(_lastLocation);
 
             LocationUpdate update = new LocationUpdate(activeRunId, dist);
 
@@ -157,22 +177,20 @@ public class RunnerService extends Service implements LocationListener {
             setTotalDistance(newDist);
 
             // Add update to db
-            _runRepo.setRunDistance(activeRunId, newDist);
+            _runRepo.setRunDistance(getActiveRunId(), newDist);
             _locRepo.addPos(update);
         }
 
-        lastLocation = location;
+        _lastLocation = location;
     }
 
     @Override
     public void onProviderEnabled(String provider) {
-        // the user enabled (for example) the GPS
         Log.d("cw3", "onProviderEnabled: " + provider);
     }
 
     @Override
     public void onProviderDisabled(String provider) {
-        // the user disabled (for example) the GPS
         Log.d("cw3", "onProviderDisabled: " + provider);
     }
 

@@ -11,6 +11,7 @@ import java.util.Locale;
 
 @Entity(
         foreignKeys = @ForeignKey(
+                onDelete = ForeignKey.CASCADE,
                 entity = Run.class,
                 parentColumns = "uid",
                 childColumns = "runId"
@@ -28,7 +29,9 @@ public class LocationUpdate {
     @PrimaryKey(autoGenerate = true)
     long uid;
 
-    long runId, timestamp;
+    long runId;
+
+    long timestamp;
 
     double distance;
 
@@ -48,7 +51,7 @@ public class LocationUpdate {
     @Override
     public String toString() {
         return "[" +
-        DistanceTimeUtils.asShortDateFormat(getTimestamp()) +
+        DistanceTimeUtils.DateTimeFormat(getTimestamp()) +
         " : " +
         String.format(Locale.ENGLISH, "%.2f]", getDistance());
     }

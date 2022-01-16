@@ -15,25 +15,28 @@
         android:theme="@style/Theme.Mdp_cw3">
         <activity
             android:name=".views.AboutActivity"
+            android:parentActivityName=".views.MainActivity"
             android:exported="false" />
         <activity
             android:name=".views.RunOverviewActivity"
             android:exported="false" />
         <activity
             android:name=".views.HistoryActivity"
+            android:parentActivityName=".views.MainActivity"
             android:exported="false" />
         <activity
             android:name=".views.SettingsActivity"
+            android:parentActivityName=".views.MainActivity"
             android:exported="false" />
         <activity
             android:name=".views.RunningActivity"
+            android:parentActivityName=".views.MainActivity"
             android:exported="false" />
         <activity
             android:name=".views.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

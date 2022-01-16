@@ -1,18 +1,46 @@
 <resources>
     <string name="app_name">Running Tracker</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="generic_notif_channel_name">Running Tracking</string>
     <string name="generic_notif_channel_desc">Default description</string>
-    <string name="running_in_foreground_desc">Tap here for details</string>
-    <string name="running_in_foreground_title">Running in the background</string>
+    <string name="txtNotifDescription">Tap here for details</string>
+    <string name="txtNotifTitle">You are currently running!</string>
     <string name="generic_notif_channel_id">Generic</string>
     <string name="database_name">db_cw3</string>
+    <string name="txtRunFinished">Run finished!</string>
+    <string name="txtStopRunButton">Stop Run</string>
+    <string name="txt_ActiveRunTitle">Run</string>
+    <string name="txtAboutTitle">About the App</string>
+    <string name="txtAboutSection1">This app was produced by DannyWeston (psydw2) for his MDP coursework 3.</string>
+    <string name="txtAboutSection2">It involves functionality for tracking the distance and duration a run is completed by a user.</string>
+    <string name="txtMainTitle">Running Tracker</string>
+    <string name="txtMainRunButton">Run</string>
+    <string name="txtMainHistoryButton">History</string>
+    <string name="txtMainSettingsButton">Settings</string>
+    <string name="txtMainAboutButton">About</string>
+    <string name="txtOverviewDistance">Distance:</string>
+    <string name="txtOverviewDuration">Time taken:</string>
+    <string name="txtOverviewSpeed">Average speed:</string>
+    <string name="txtOverviewDeleteButton">Delete</string>
+    <string name="txtSettingsTitle">Settings</string>
+    <string name="txtHistoryTitle">Run History</string>
+    <string name="txtMostRecentRunSubtitle">Most Recent Run:</string>
+    <string name="txtLongestRunSubtitle">Longest Run:</string>
+    <string name="txtAllRunsSubtitle">All Runs:</string>
+    <string name="txtNotifEndRun">END RUN</string>
+    <string name="prefUnits">PreferredUnits</string>
+    <string name="txtSaveButton">Save</string>
+    <string name="txtSavedSettingsPopup">Saved</string>
+    <string name="txtUnitsSettingPrefix">Units:</string>
+    <string name="extraRunInfo">ExtraRunInfo</string>
+    <string name="txtDeleteRunDialogDesc">Are you sure you want to delete this run?</string>
+    <string name="txtDeleteRunDialogTitle">Confirm Run Deletion</string>
+    <string name="txtYes">Yes</string>
+    <string name="txtNo">No</string>
+    <string name="txtMetresSpeedUnits">m/s</string>
+    <string name="txtKilometresSpeedUnits">km/h</string>
+    <string name="txtMilesSpeedUnits">mph</string>
+    <string name="extraNullSpeed">-</string>
+    <string name="txtMetreUnits">m</string>
+    <string name="txtKilometreUnits">km</string>
+    <string name="txtMileUnits">miles</string>
 </resources>

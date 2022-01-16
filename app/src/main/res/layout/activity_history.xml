@@ -5,60 +5,133 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="com.dannyweston.mdp_cw3.viewmodels.HistoryActivityViewModel"/>
+        <import type="com.dannyweston.mdp_cw3.util.DistanceTimeUtils"/>
         <variable name="viewmodel" type="HistoryActivityViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ContentSpacing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/ContentSpacing"
         tools:context=".views.HistoryActivity">
 
-        <!-- Title Section -->
-        <LinearLayout
-            android:id="@+id/section_titles"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <!-- Title -->
+        <TextView
+            android:id="@+id/txt_ActivityTitle"
+            style="@style/Heading1"
 
-            <TextView
-                android:id="@+id/txt_activityTitle"
-                style="@style/Heading1"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:text="Run History" />
-        </LinearLayout>
-
-        <!-- Content Section -->
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/section_titles">
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAlignment="center"
+            android:text="@string/txtHistoryTitle" />
 
-            <TextView
-                style="@style/Heading2"
-                android:layout_width="wrap_content"
-
+        <!-- Content -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_ActivityTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+            <LinearLayout
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-
-                android:text="Most Recent Run:" />
-
-            <Button
-                android:tag="@{viewmodel.lastRun.id}"
-                style="@style/ButtonField"
-
-                android:visibility="@{viewmodel.lastRun == null ? 4 : 0}"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{viewmodel.lastRun.toString()}"
-                android:onClick="@{(view) -> viewmodel.viewRun(view)}"
-                />
-        </LinearLayout>
+                android:orientation="vertical">
+                <!-- Recent Run -->
+                <LinearLayout
+                    android:id="@+id/group_RecentRun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Heading2"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+
+                        android:text="@string/txtMostRecentRunSubtitle" />
+
+                    <Button
+                        android:tag="@{viewmodel.lastRun.id}"
+                        style="@style/OverviewRunButton"
+
+                        android:visibility="@{viewmodel.lastRun == null ? 4 : 0}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewmodel.lastRun.toString()}"
+                        android:onClick="@{(view) -> viewmodel.viewRun(view)}"
+                        />
+                </LinearLayout>
+
+                <!-- Longest Run -->
+                <LinearLayout
+                    android:id="@+id/group_LongestRun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <TextView
+                        style="@style/Heading2"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:text="@string/txtLongestRunSubtitle" />
+
+                    <Button
+                        android:tag="@{viewmodel.longestRun.id}"
+                        style="@style/OverviewRunButton"
+
+                        android:visibility="@{viewmodel.longestRun == null ? 4 : 0}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewmodel.longestRun.toString()}"
+                        android:onClick="@{(view) -> viewmodel.viewRun(view)}"
+                        />
+                </LinearLayout>
+
+                <!-- All Runs -->
+                <LinearLayout
+                    android:id="@+id/group_AllRuns"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="20dp">
+
+                    <!-- Subtitle -->
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp">
+
+                        <TextView
+                            style="@style/Heading2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txtAllRunsSubtitle" />
+
+                        <TextView
+                            style="@style/Heading2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text='@{viewmodel.count.toString() + " total"}' />
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_AllRuns"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"/>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

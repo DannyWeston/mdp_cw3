@@ -4,24 +4,29 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
+import com.dannyweston.mdp_cw3.R;
+
 public class MainActivityViewModel extends SignallingViewModel {
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
     }
 
+
+
+
     public void runActivity(){
-        setEventInvoked(true, 0);
+        setAction(new Action(R.integer.actionOpenRunActivity));
     }
 
     public void historyActivity(){
-        setEventInvoked(true, 1);
+        setAction(new Action(R.integer.actionOpenHistoryActivity));
     }
 
     public void settingsActivity(){
-        setEventInvoked(true, 2);
+        setAction(new Action(R.integer.actionOpenSettingsActivity));
     }
 
     public void aboutActivity() {
-        setEventInvoked(true, 3);
+        setAction(new Action(R.integer.actionOpenAboutActivity));
     }
 }

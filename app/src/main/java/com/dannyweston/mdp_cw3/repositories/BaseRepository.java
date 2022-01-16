@@ -1,4 +1,4 @@
-package com.dannyweston.mdp_cw3.dao.repositories;
+package com.dannyweston.mdp_cw3.repositories;
 
 import android.app.Application;
 

@@ -1,11 +1,10 @@
-package com.dannyweston.mdp_cw3.dao.repositories;
+package com.dannyweston.mdp_cw3.repositories;
 
 import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import com.dannyweston.mdp_cw3.dao.LocationUpdate;
 import com.dannyweston.mdp_cw3.dao.Run;
 
 import java.util.List;
@@ -18,6 +17,14 @@ public class RunRepository extends BaseRepository {
 
     public LiveData<Run> getLastRun() {
         return getDb().runDao().getLastRun();
+    }
+
+    public LiveData<Run> getLongestRun() {
+        return getDb().runDao().getLongestRun();
+    }
+
+    public LiveData<Long> getRunCount(){
+        return getDb().runDao().getRunCount();
     }
 
     public long addNewRun(Run run){
@@ -54,5 +61,9 @@ public class RunRepository extends BaseRepository {
 
     public LiveData<Run> getRun(long runId){
         return getDb().runDao().getRun(runId);
+    }
+
+    public LiveData<List<Run>> getRuns() {
+        return getDb().runDao().getAllRuns();
     }
 }

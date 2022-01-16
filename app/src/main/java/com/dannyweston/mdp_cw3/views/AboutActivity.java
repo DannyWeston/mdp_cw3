@@ -1,9 +1,11 @@
 package com.dannyweston.mdp_cw3.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.dannyweston.mdp_cw3.R;

@@ -1,5 +1,7 @@
 package com.dannyweston.mdp_cw3.util;
 
+import com.dannyweston.mdp_cw3.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -12,10 +14,6 @@ public class DistanceTimeUtils {
     private static final long MILLIS_IN_SECOND = 1000;
     private static final long MILLIS_IN_MINUTE = 60000;
 
-    public static String ToMetresString(double metres){
-        return String.format(Locale.ENGLISH, "%.0f m", metres);
-    }
-
     public static double MetresToKM(double metres){
         return metres / METRES_IN_KILOMETRE;
     }
@@ -24,16 +22,8 @@ public class DistanceTimeUtils {
         return metres / METRES_IN_MILE;
     }
 
-    public static double GetSpeedMetresSecond(long millis, double distance){
-        return distance / MillisToSeconds(millis);
-    }
-
-    public static double GetSpeedKilometresHour(long millis, double distance){
-        return MetresToKM(distance) / MillisToHours(millis);
-    }
-
-    public static double GetSpeedMilesHour(long millis, double distance){
-        return MetresToMiles(distance) / MillisToHours(millis);
+    public static double GetSpeed(double distance, double time){
+        return distance / time;
     }
 
     public static double MillisToHours(long millis){
@@ -62,7 +52,9 @@ public class DistanceTimeUtils {
         return sdf.format(new Date(millis));
     }
 
-    public static String asShortDateFormat(long millis){
-        return new Date(millis).toString();
+    public static String DateFormat(long millis){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+
+        return sdf.format(new Date(millis));
     }
 }

@@ -10,7 +10,7 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-public interface LocUpdateDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+public interface LocationUpdateDao {
+    @Insert
     List<Long> insertAll(LocationUpdate... positions);
 }

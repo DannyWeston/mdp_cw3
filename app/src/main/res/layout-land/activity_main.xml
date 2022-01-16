@@ -14,26 +14,28 @@
         tools:context=".views.MainActivity"
         android:orientation="vertical">
 
+        <!-- Title -->
         <TextView
-            android:id="@+id/txt_Title"
+            android:id="@+id/txt_ActivityTitle"
             style="@style/Heading1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Running Tracker"
+            android:text="@string/txtMainTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Content -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical|center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_Title">
+            app:layout_constraintTop_toBottomOf="@+id/txt_ActivityTitle">
 
             <Button
-                android:id="@+id/btn_openRunningActivity"
+                android:id="@+id/btn_OpenRunActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
@@ -45,12 +47,12 @@
                 android:onClick="@{() -> viewmodel.runActivity()}"
                 android:padding="25dp"
 
-                android:text="Run"
+                android:text="@string/txtMainRunButton"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/btn_openHistoryActivity"
+                android:id="@+id/btn_OpenHistoryActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
@@ -62,12 +64,12 @@
                 android:onClick="@{() -> viewmodel.historyActivity()}"
                 android:padding="25dp"
 
-                android:text="History"
+                android:text="@string/txtMainHistoryButton"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/btn_openSettingsActivity"
+                android:id="@+id/btn_OpenSettingsActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
@@ -79,12 +81,12 @@
                 android:onClick="@{() -> viewmodel.settingsActivity()}"
                 android:padding="25dp"
 
-                android:text="Settings"
+                android:text="@string/txtMainSettingsButton"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/btn_openAboutActivity"
+                android:id="@+id/btn_OpenAboutActivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|top"
@@ -95,7 +97,7 @@
                 android:onClick="@{() -> viewmodel.aboutActivity()}"
                 android:padding="25dp"
 
-                android:text="About"
+                android:text="@string/txtMainAboutButton"
                 android:textAlignment="center"
                 android:textSize="24sp" />
         </LinearLayout>

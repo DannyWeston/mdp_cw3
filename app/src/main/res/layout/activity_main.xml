@@ -8,101 +8,59 @@
         <variable name="viewmodel" type="MainActivityViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ContentSpacing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/ContentSpacing"
         tools:context=".views.MainActivity">
 
+        <!-- Title -->
         <TextView
-            android:id="@+id/txt_Title"
+            android:id="@+id/txt_ActivityTitle"
             style="@style/Heading1"
+            android:textAlignment="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Running Tracker"
-            android:layout_marginBottom="30dp"
+            android:text="@string/txtMainTitle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <!-- Main Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:textAlignment="textEnd"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_Title">
+            app:layout_constraintTop_toBottomOf="@+id/txt_ActivityTitle">
 
             <Button
-                android:id="@+id/btn_openRunningActivity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginBottom="20dp"
-                android:background="@android:color/transparent"
+                android:id="@+id/btn_OpenRunActivity"
+                style="@style/HomeButtonPortrait"
                 android:drawableStart="@drawable/run_icon"
-                android:drawablePadding="25dp"
-
                 android:onClick="@{() -> viewmodel.runActivity()}"
-                android:paddingVertical="10dp"
-                android:text="Run"
-                android:textAlignment="textEnd"
-                android:paddingHorizontal="25dp"
-                android:textSize="24sp" />
+                android:text="@string/txtMainRunButton" />
 
             <Button
-                android:id="@+id/btn_openHistoryActivity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginBottom="20dp"
-                android:background="@android:color/transparent"
+                android:id="@+id/btn_OpenHistoryActivity"
+                style="@style/HomeButtonPortrait"
                 android:drawableStart="@drawable/history_icon"
-                android:drawablePadding="25dp"
-
                 android:onClick="@{() -> viewmodel.historyActivity()}"
-                android:paddingVertical="10dp"
-                android:text="History"
-                android:textAlignment="textEnd"
-                android:paddingHorizontal="25dp"
-                android:textSize="24sp" />
+                android:text="@string/txtMainHistoryButton"/>
 
             <Button
-                android:id="@+id/btn_openSettingsActivity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginBottom="20dp"
-                android:background="@android:color/transparent"
+                android:id="@+id/btn_OpenSettingsActivity"
+                style="@style/HomeButtonPortrait"
                 android:drawableStart="@drawable/settings_icon"
-                android:drawablePadding="25dp"
-
                 android:onClick="@{() -> viewmodel.settingsActivity()}"
-                android:paddingVertical="10dp"
-                android:text="Settings"
-                android:textAlignment="textEnd"
-                android:paddingHorizontal="25dp"
-                android:textSize="24sp" />
+                android:text="@string/txtMainSettingsButton"/>
 
             <Button
-                android:id="@+id/btn_openAboutActivity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:layout_marginBottom="20dp"
-                android:background="@android:color/transparent"
+                android:id="@+id/btn_OpenAboutActivity"
+                style="@style/HomeButtonPortrait"
                 android:drawableStart="@drawable/about_icon"
-                android:drawablePadding="25dp"
-
                 android:onClick="@{() -> viewmodel.aboutActivity()}"
-                android:paddingVertical="10dp"
-                android:text="About"
-                android:textAlignment="textEnd"
-                android:paddingHorizontal="25dp"
-                android:textSize="24sp" />
-
+                android:text="@string/txtMainAboutButton" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

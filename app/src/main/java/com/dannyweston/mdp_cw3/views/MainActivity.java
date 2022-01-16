@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.dannyweston.mdp_cw3.R;
+import com.dannyweston.mdp_cw3.viewmodels.Action;
 import com.dannyweston.mdp_cw3.viewmodels.MainActivityViewModel;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +17,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.dannyweston.mdp_cw3.databinding.ActivityMainBinding;
 import com.dannyweston.mdp_cw3.viewmodels.ViewModelFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ActionListener {
+    private MainActivityViewModel _vm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,31 +30,30 @@ public class MainActivity extends AppCompatActivity {
 
         /* Setup viewmodel */
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        MainActivityViewModel viewmodel = new ViewModelProvider(this, new ViewModelFactory(getApplication()))
+        _vm = new ViewModelProvider(this, new ViewModelFactory(getApplication()))
                 .get(MainActivityViewModel.class);
 
-        viewmodel.getEventInvoked().observe(this, (obs) -> {
-            Intent intent;
-            switch ((int)obs.second.longValue()){
-                case 0:
-                    intent = new Intent(this, RunningActivity.class);
-                    break;
-                case 1:
-                    intent = new Intent(this, HistoryActivity.class);
-                    break;
-                case 2:
-                    intent = new Intent(this, SettingsActivity.class);
-                    break;
-                case 3:
-                    intent = new Intent(this, AboutActivity.class);
-                    break;
-                default: return;
-            }
-
-            startActivity(new Intent(intent));
-        });
+        // Setup action listening
+        _vm.getAction().observe(this, this::onAction);
 
         binding.setLifecycleOwner(this);
-        binding.setViewmodel(viewmodel);
+        binding.setViewmodel(_vm);
+    }
+
+    @Override
+    public void onAction(Action action) {
+        Intent intent;
+        if (action.getValue() == R.integer.actionOpenRunActivity) {
+            intent = new Intent(this, RunningActivity.class);
+        } else if (action.getValue() == R.integer.actionOpenHistoryActivity) {
+            intent = new Intent(this, HistoryActivity.class);
+        } else if (action.getValue() == R.integer.actionOpenSettingsActivity) {
+            intent = new Intent(this, SettingsActivity.class);
+        } else if (action.getValue() == R.integer.actionOpenAboutActivity) {
+            intent = new Intent(this, AboutActivity.class);
+        } else { return; }
+
+        _vm.setAction(Action.RESET_ACTION);
+        startActivity(new Intent(intent));
     }
 }

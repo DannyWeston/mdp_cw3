@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="Metres">0</integer>
+    <integer name="Kilometres">1</integer>
+    <integer name="Miles">2</integer>
+</resources>

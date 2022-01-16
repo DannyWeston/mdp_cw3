@@ -13,8 +13,11 @@ public interface RunDao {
     @Query("SELECT * FROM Run WHERE uid = (:runId)")
     LiveData<Run> getRun(long runId);
 
-    @Query("SELECT * FROM Run WHERE uid = (SELECT MAX(uid) FROM Run)")
+    @Query("SELECT * FROM Run WHERE uid = (SELECT uid FROM Run WHERE startTime = (SELECT MAX(startTime) FROM Run))")
     LiveData<Run> getLastRun();
+
+    @Query("SELECT * FROM Run WHERE uid = (SELECT uid FROM Run WHERE distance = (SELECT MAX(distance) FROM Run))")
+    LiveData<Run> getLongestRun();
 
     @Query("SELECT * FROM LocationUpdate WHERE runId = (:runId)")
     LiveData<List<LocationUpdate>> getLocations(long runId);
@@ -36,4 +39,13 @@ public interface RunDao {
 
     @Insert
     long insert(Run run);
+
+    @Query("SELECT * FROM Run ORDER BY startTime DESC")
+    LiveData<List<Run>> getAllRuns();
+
+    @Query("SELECT COUNT(*) FROM Run")
+    LiveData<Long> getRunCount();
+
+    @Query("SELECT * FROM Run WHERE (startTime > :dateA AND startTime < :dateB)")
+    LiveData<List<Run>> getFromDateRange(long dateA, long dateB);
 }

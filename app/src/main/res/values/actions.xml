@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="actionReset">0</integer>
+    <integer name="actionCloseActivity">-1</integer>
+    <integer name="actionOpenMainActivity">2</integer>
+    <integer name="actionOpenRunOverviewActivity">3</integer>
+    <integer name="actionOpenRunActivity">4</integer>
+    <integer name="actionOpenHistoryActivity">5</integer>
+    <integer name="actionOpenSettingsActivity">6</integer>
+    <integer name="actionEndRun">7</integer>
+    <integer name="actionOpenAboutActivity">8</integer>
+    <integer name="actionDeleteRun">9</integer>
+    <integer name="actionSaveSettings">10</integer>
+</resources>

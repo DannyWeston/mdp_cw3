@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 
 @Database(
         entities = { LocationUpdate.class, Run.class },
-        version = 6,
+        version = 7,
         exportSchema = false
 )
 public abstract class AppDatabase extends RoomDatabase {
@@ -22,7 +22,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private final ExecutorService dbExecutors = Executors.newFixedThreadPool(EXECUTOR_THREADS);
 
-    public abstract LocUpdateDao locationDao();
+    public abstract LocationUpdateDao locationDao();
     public abstract RunDao runDao();
 
     private static volatile AppDatabase _instance;
