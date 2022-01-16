@@ -20,7 +20,7 @@
             android:id="@+id/txt_ActivityTitle"
             style="@style/Heading1"
 
-            android:text="@string/txt_ActiveRunTitle"
+            android:text="@string/txtActiveRunTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 

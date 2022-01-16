@@ -77,6 +77,7 @@ public class SettingsActivity extends AppCompatActivity implements ActionListene
 
             prefEditor.apply();
 
+            // Show popup message for settings saved
             Toast.makeText(getApplicationContext(),R.string.txtSavedSettingsPopup,Toast.LENGTH_LONG).show();
 
             _vm.setAction(Action.RESET_ACTION);

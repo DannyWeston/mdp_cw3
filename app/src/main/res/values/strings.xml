@@ -6,9 +6,9 @@
     <string name="txtNotifTitle">You are currently running!</string>
     <string name="generic_notif_channel_id">Generic</string>
     <string name="database_name">db_cw3</string>
-    <string name="txtRunFinished">Run finished!</string>
+    <string name="txtRunFinished">You finished a run!</string>
     <string name="txtStopRunButton">Stop Run</string>
-    <string name="txt_ActiveRunTitle">Run</string>
+    <string name="txtActiveRunTitle">Run</string>
     <string name="txtAboutTitle">About the App</string>
     <string name="txtAboutSection1">This app was produced by DannyWeston (psydw2) for his MDP coursework 3.</string>
     <string name="txtAboutSection2">It involves functionality for tracking the distance and duration a run is completed by a user.</string>
@@ -29,7 +29,7 @@
     <string name="txtNotifEndRun">END RUN</string>
     <string name="prefUnits">PreferredUnits</string>
     <string name="txtSaveButton">Save</string>
-    <string name="txtSavedSettingsPopup">Saved</string>
+    <string name="txtSavedSettingsPopup">Saved settings!</string>
     <string name="txtUnitsSettingPrefix">Units:</string>
     <string name="extraRunInfo">ExtraRunInfo</string>
     <string name="txtDeleteRunDialogDesc">Are you sure you want to delete this run?</string>

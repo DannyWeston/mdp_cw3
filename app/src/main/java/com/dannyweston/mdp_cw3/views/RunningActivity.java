@@ -11,6 +11,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.dannyweston.mdp_cw3.R;
 import com.dannyweston.mdp_cw3.databinding.ActivityRunningBinding;
@@ -71,6 +72,8 @@ public class RunningActivity extends AppCompatActivity implements ActionListener
     public void onAction(Action action) {
         if (action.getValue() == R.integer.actionEndRun){
             _runnerService.endRun();
+
+            Toast.makeText(getApplicationContext(), R.string.txtRunFinished,Toast.LENGTH_LONG).show();
 
             _vm.setAction(Action.RESET_ACTION);
         }
